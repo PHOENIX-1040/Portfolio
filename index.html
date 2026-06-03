@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Surya Sai Ganga Dhaaran Pithani — Portfolio</title>
+<meta name="description" content="Computer Science portfolio of Surya Sai Ganga Dhaaran Pithani — research and engineering across machine learning, computer vision, network security, and retrieval systems." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ink: #0c0c0c;
+    --ink-soft: #2a2a2a;
+    --ink-mute: #6b6b6b;
+    --rule: #1a1a1a;
+    --paper: #f1ede4;
+    --paper-warm: #ebe6da;
+    --paper-deep: #e3ddce;
+    --accent: #0c0c0c;
+    --serif: "Fraunces", ui-serif, Georgia, serif;
+    --sans: "Geist", -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: "Geist Mono", ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Paper grain overlay */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.35;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.08 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  ::selection { background: var(--ink); color: var(--paper); }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* ============ NAV ============ */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 22px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    mix-blend-mode: difference;
+    color: var(--paper);
+  }
+  nav .mark {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+    font-weight: 400;
+  }
+  nav .links {
+    display: flex;
+    gap: 36px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  nav .links a { position: relative; }
+  nav .links a::after {
+    content: "";
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 0; height: 1px;
+    background: currentColor;
+    transition: width 0.4s cubic-bezier(.2,.7,.2,1);
+  }
+  nav .links a:hover::after { width: 100%; }
+
+  /* ============ HERO ============ */
+  .hero {
+    min-height: 100vh;
+    padding: 120px 40px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .hero-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .hero-top .meta-row { display: flex; gap: 8px; align-items: center; }
+  .hero-top .dot { width: 6px; height: 6px; background: var(--ink); border-radius: 50%; display: inline-block; }
+
+  .hero-name {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(56px, 13vw, 220px);
+    line-height: 0.88;
+    letter-spacing: -0.045em;
+    margin: 80px 0 40px;
+    font-variation-settings: "opsz" 144;
+  }
+  .hero-name .italic {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--ink-soft);
+  }
+
+  .hero-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: end;
+  }
+  .hero-tagline {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(20px, 2.2vw, 28px);
+    line-height: 1.3;
+    font-weight: 300;
+    max-width: 540px;
+    color: var(--ink-soft);
+  }
+  .hero-tagline em { font-style: normal; color: var(--ink); }
+  .hero-cta {
+    justify-self: end;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-cta .arrow {
+    display: inline-block;
+    width: 40px; height: 1px;
+    background: var(--ink);
+    position: relative;
+  }
+  .hero-cta .arrow::after {
+    content: "";
+    position: absolute;
+    right: 0; top: -3px;
+    width: 7px; height: 7px;
+    border-right: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    transform: rotate(-45deg);
+  }
+
+  /* ============ SECTION SHELL ============ */
+  section {
+    padding: 120px 40px;
+    position: relative;
+    border-bottom: 1px solid var(--rule);
+  }
+  .section-head {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 40px;
+    margin-bottom: 80px;
+    align-items: baseline;
+  }
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(40px, 6vw, 88px);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+  }
+  .section-title .italic { font-style: italic; }
+
+  /* ============ ABOUT ============ */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+  .about-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    padding-top: 8px;
+  }
+  .about-prose p {
+    font-size: 18px;
+    line-height: 1.65;
+    margin-bottom: 22px;
+    color: var(--ink-soft);
+    max-width: 540px;
+  }
+  .about-prose p strong { color: var(--ink); font-weight: 500; }
+  .about-facts {
+    border-left: 1px solid var(--rule);
+    padding-left: 40px;
+  }
+  .fact {
+    padding: 18px 0;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 20px;
+    align-items: baseline;
+  }
+  .fact:first-child { padding-top: 0; }
+  .fact-key {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .fact-val {
+    font-size: 15px;
+    color: var(--ink);
+  }
+  .fact-val .serif {
+    font-family: var(--serif);
+    font-style: italic;
+  }
+
+  /* ============ PROJECTS ============ */
+  .project {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 60px;
+    padding: 80px 0;
+    border-top: 1px solid var(--rule);
+    position: relative;
+    cursor: default;
+    transition: background 0.5s ease;
+  }
+  .project:first-of-type { border-top: none; padding-top: 0; }
+  .project:hover { background: var(--paper-warm); }
+  .project:hover .pj-title { transform: translateX(8px); }
+
+  .pj-meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .pj-meta .num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 28px;
+    color: var(--ink);
+    display: block;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+  }
+  .pj-meta .tag {
+    display: block;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .pj-meta .tag:last-child { border-bottom: none; }
+
+  .pj-body { padding-left: 0; }
+  .pj-title {
+    font-family: var(--serif);
+    font-size: clamp(28px, 3.8vw, 52px);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    margin-bottom: 24px;
+    transition: transform 0.5s cubic-bezier(.2,.7,.2,1);
+  }
+  .pj-title .italic { font-style: italic; color: var(--ink-soft); }
+
+  .pj-desc {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    max-width: 680px;
+    margin-bottom: 28px;
+  }
+  .pj-desc strong { color: var(--ink); font-weight: 500; }
+
+  .pj-results {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    margin-bottom: 28px;
+    padding: 20px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .pj-stat .num {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .pj-stat .label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+
+  .pj-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .pj-stack span {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    padding: 6px 12px;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    color: var(--ink-soft);
+  }
+
+  /* ============ SKILLS ============ */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 60px;
+  }
+  .skill-cats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px 60px;
+  }
+  .skill-cat-title {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .skill-list {
+    list-style: none;
+    columns: 2;
+    column-gap: 40px;
+  }
+  .skill-list li {
+    font-size: 14px;
+    padding: 6px 0;
+    color: var(--ink-soft);
+    font-family: var(--mono);
+    letter-spacing: 0.02em;
+    break-inside: avoid;
+  }
+  .skill-list li::before {
+    content: "—  ";
+    color: var(--ink-mute);
+  }
+
+  /* ============ FOOTER ============ */
+  footer {
+    padding: 100px 40px 50px;
+    background: var(--ink);
+    color: var(--paper);
+    position: relative;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: end;
+    margin-bottom: 80px;
+  }
+  .footer-headline {
+    font-family: var(--serif);
+    font-size: clamp(40px, 6vw, 96px);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+  }
+  .footer-headline .italic { font-style: italic; color: #888; }
+  .footer-contact {
+    justify-self: end;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .footer-contact a {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 8px 0;
+    border-bottom: 1px solid #2a2a2a;
+    transition: padding 0.3s ease;
+  }
+  .footer-contact a:hover { padding-left: 12px; }
+  .footer-contact a span:first-child {
+    color: #888;
+    width: 60px;
+  }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #888;
+    padding-top: 30px;
+    border-top: 1px solid #2a2a2a;
+  }
+
+  /* ============ REVEAL ANIM ============ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.9s cubic-bezier(.2,.7,.2,1), transform 0.9s cubic-bezier(.2,.7,.2,1);
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Hero entrance */
+  .hero-name, .hero-tagline, .hero-cta, .hero-top {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: rise 1.2s cubic-bezier(.2,.7,.2,1) forwards;
+  }
+  .hero-top { animation-delay: 0.1s; }
+  .hero-name { animation-delay: 0.3s; }
+  .hero-tagline { animation-delay: 0.6s; }
+  .hero-cta { animation-delay: 0.8s; }
+
+  @keyframes rise {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 900px) {
+    nav { padding: 18px 24px; }
+    nav .links { gap: 20px; }
+    .hero { padding: 100px 24px 60px; }
+    section { padding: 80px 24px; }
+    .hero-bottom { grid-template-columns: 1fr; gap: 32px; }
+    .hero-cta { justify-self: start; }
+    .section-head, .about-grid, .project, .skills-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    .about-facts { border-left: none; border-top: 1px solid var(--rule); padding-left: 0; padding-top: 24px; }
+    .skill-cats { grid-template-columns: 1fr; gap: 36px; }
+    .skill-list { columns: 1; }
+    footer { padding: 80px 24px 40px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+    .footer-contact { justify-self: start; width: 100%; }
+    .footer-bottom { flex-direction: column; gap: 12px; }
+  }
+
+  @media (max-width: 600px) {
+    nav .links a:not(:last-child) { display: none; }
+    .pj-results { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#top" class="mark">D.</a>
+  <div class="links">
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-top">
+    <div class="meta-row"><span class="dot"></span> Portfolio &nbsp;/&nbsp; MMXXVI</div>
+    <div>Coimbatore, IN</div>
+  </div>
+
+  <h1 class="hero-name">
+    Dhaaran<br>
+    <span class="italic">Pithani.</span>
+  </h1>
+
+  <div class="hero-bottom">
+    <p class="hero-tagline">
+      A computer science student building <em>intelligent systems</em> at the intersection of machine learning, computer vision, and secure infrastructure — currently applying for a Master's in the United Kingdom.
+    </p>
+    <a href="#work" class="hero-cta">
+      <span>Selected Work</span>
+      <span class="arrow"></span>
+    </a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-head reveal">
+    <div class="section-num">§ 01 — Profile</div>
+    <h2 class="section-title">A brief <span class="italic">introduction.</span></h2>
+  </div>
+
+  <div class="about-grid reveal">
+    <div class="about-label">About</div>
+    <div class="about-prose">
+      <p>
+        I am <strong>Surya Sai Ganga Dhaaran Pithani</strong> — a final-year Computer Science and Engineering undergraduate at PSG Institute of Technology and Applied Research, Coimbatore. My work sits where applied machine learning meets real systems: drones over farmland, transformers watching campus corridors, classifiers guarding network perimeters, and retrieval pipelines that read entire libraries.
+      </p>
+      <p>
+        I have co-authored an <strong>IEEE conference paper</strong> on UAV-based precision agriculture and contributed to projects spanning network intrusion detection, retrieval-augmented generation, and real-time violence detection using vision transformers. I am drawn to research that takes a clean theoretical idea and stress-tests it against the noise of the real world.
+      </p>
+      <p>
+        I'm currently preparing to pursue a <strong>Master's degree in the UK</strong>, with research interests in computer vision, deep learning for surveillance and safety-critical systems, and trustworthy AI.
+      </p>
+    </div>
+    <div class="about-facts">
+      <div class="fact">
+        <div class="fact-key">Based</div>
+        <div class="fact-val">Coimbatore, India</div>
+      </div>
+      <div class="fact">
+        <div class="fact-key">Field</div>
+        <div class="fact-val"><span class="serif">B.E.</span> Computer Science &amp; Engineering</div>
+      </div>
+      <div class="fact">
+        <div class="fact-key">Institute</div>
+        <div class="fact-val">PSG iTech, Coimbatore</div>
+      </div>
+      <div class="fact">
+        <div class="fact-key">Focus</div>
+        <div class="fact-val"><span class="serif">ML</span>, Computer Vision, Security</div>
+      </div>
+      <div class="fact">
+        <div class="fact-key">Pursuing</div>
+        <div class="fact-val">MSc — United Kingdom, 2026</div>
+      </div>
+      <div class="fact">
+        <div class="fact-key">Publication</div>
+        <div class="fact-val">IEEE iTechSECOM 2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="section-head reveal">
+    <div class="section-num">§ 02 — Selected Work</div>
+    <h2 class="section-title">Four <span class="italic">projects.</span></h2>
+  </div>
+
+  <!-- PROJECT 01 -->
+  <article class="project reveal">
+    <div class="pj-meta">
+      <span class="num">01.</span>
+      <span class="tag">2025</span>
+      <span class="tag">IEEE Publication</span>
+      <span class="tag">UAV · ML</span>
+    </div>
+    <div class="pj-body">
+      <h3 class="pj-title">Drone-Based Precision <span class="italic">Agriculture</span> using Machine Learning</h3>
+      <p class="pj-desc">
+        A solar-powered <strong>DJI Mavic 2 Pro</strong> framework that captures 4K aerial imagery of farmland and routes it through cloud-based deep learning pipelines to automate four critical tasks: water-scarcity detection, weed mapping, crop disease identification with treatment recommendations, and growth-stage yield prediction. The system delivers real-time insights to farmers through a mobile interface, replacing the cost and rigidity of conventional IoT-only setups.
+      </p>
+      <div class="pj-results">
+        <div class="pj-stat"><span class="num">94.32%</span><span class="label">Growth Estimation</span></div>
+        <div class="pj-stat"><span class="num">97.84%</span><span class="label">Weed Detection</span></div>
+        <div class="pj-stat"><span class="num">93.87%</span><span class="label">Disease ID</span></div>
+        <div class="pj-stat"><span class="num">22K+</span><span class="label">Training Images</span></div>
+      </div>
+      <div class="pj-stack">
+        <span>CNN</span><span>Feedforward NN</span><span>Python</span><span>VGG-16</span><span>ResNet-50</span><span>Keras</span><span>OpenCV</span><span>UAV Imaging</span>
+      </div>
+    </div>
+  </article>
+
+  <!-- PROJECT 02 -->
+  <article class="project reveal">
+    <div class="pj-meta">
+      <span class="num">02.</span>
+      <span class="tag">2025</span>
+      <span class="tag">Cybersecurity</span>
+      <span class="tag">Real-time ML</span>
+    </div>
+    <div class="pj-body">
+      <h3 class="pj-title">AI-Driven Network <span class="italic">Security</span> Dashboard</h3>
+      <p class="pj-desc">
+        A hybrid intrusion detection framework that unifies <strong>UDP Flood (DDoS)</strong> and <strong>ARP Spoofing</strong> detection into a single real-time monitoring dashboard. Two Random Forest classifiers run in parallel on independently engineered feature sets, with their outputs fused at the dashboard layer to visualise risk probabilities, alert urgency, and live traffic analytics — replacing the brittle signature-matching of traditional IDS.
+      </p>
+      <div class="pj-results">
+        <div class="pj-stat"><span class="num">99.59%</span><span class="label">UDP Flood Acc.</span></div>
+        <div class="pj-stat"><span class="num">99.99%</span><span class="label">ARP Spoof Acc.</span></div>
+        <div class="pj-stat"><span class="num">0.9999</span><span class="label">F1 Score</span></div>
+        <div class="pj-stat"><span class="num">~1.0</span><span class="label">ROC-AUC</span></div>
+      </div>
+      <div class="pj-stack">
+        <span>Random Forest</span><span>SelectKBest</span><span>StandardScaler</span><span>scikit-learn</span><span>Pandas</span><span>Real-time Dashboard</span><span>Network Forensics</span>
+      </div>
+    </div>
+  </article>
+
+  <!-- PROJECT 03 -->
+  <article class="project reveal">
+    <div class="pj-meta">
+      <span class="num">03.</span>
+      <span class="tag">2024</span>
+      <span class="tag">NLP · RAG</span>
+      <span class="tag">OOSE</span>
+    </div>
+    <div class="pj-body">
+      <h3 class="pj-title">Data RAG — <span class="italic">Retrieval-Augmented</span> Document Intelligence</h3>
+      <p class="pj-desc">
+        A modular retrieval-augmented generation framework that ingests heterogeneous corpora (PDFs, text, structured sources), chunks and embeds them via <strong>Sentence-BERT / MiniLM</strong>, and serves semantic queries through a <strong>FAISS</strong> vector index with cosine similarity. The architecture cleanly separates ingestion, embedding, vector storage, query handling, and UI — designed as an OOSE artifact with full test coverage for ambiguity, edge-case data, and real-time responsiveness.
+      </p>
+      <div class="pj-results">
+        <div class="pj-stat"><span class="num">5</span><span class="label">Modular Layers</span></div>
+        <div class="pj-stat"><span class="num">Top-K</span><span class="label">Semantic Retrieval</span></div>
+        <div class="pj-stat"><span class="num">Streamlit</span><span class="label">User Interface</span></div>
+      </div>
+      <div class="pj-stack">
+        <span>Sentence-BERT</span><span>FAISS</span><span>MiniLM</span><span>Streamlit</span><span>Python</span><span>NumPy</span><span>Transformers</span>
+      </div>
+    </div>
+  </article>
+
+  <!-- PROJECT 04 -->
+  <article class="project reveal">
+    <div class="pj-meta">
+      <span class="num">04.</span>
+      <span class="tag">2026</span>
+      <span class="tag">Final Year Project</span>
+      <span class="tag">Vision Transformers</span>
+    </div>
+    <div class="pj-body">
+      <h3 class="pj-title">Intelligent Violence Detection with <span class="italic">DeiT</span> &amp; Temporal Consistency</h3>
+      <p class="pj-desc">
+        A real-time campus surveillance system built on a <strong>Data-Efficient Image Transformer (DeiT)</strong> backbone with a temporal-consistency layer for smoothing frame-level predictions into reliable event detections. The goal: overcome the well-documented attention decay of human CCTV operators (which drops sharply after 15–20 minutes) and the chronic false-positive rate of motion-based heuristics — flagging genuine threats with low latency while keeping benign activity quiet.
+      </p>
+      <div class="pj-results">
+        <div class="pj-stat"><span class="num">DeiT</span><span class="label">Transformer Backbone</span></div>
+        <div class="pj-stat"><span class="num">Real-time</span><span class="label">Inference Pipeline</span></div>
+        <div class="pj-stat"><span class="num">Temporal</span><span class="label">Consistency Layer</span></div>
+      </div>
+      <div class="pj-stack">
+        <span>PyTorch</span><span>DeiT</span><span>Vision Transformer</span><span>OpenCV</span><span>Video Analytics</span><span>CUDA</span>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-head reveal">
+    <div class="section-num">§ 03 — Capabilities</div>
+    <h2 class="section-title">Tools of the <span class="italic">trade.</span></h2>
+  </div>
+
+  <div class="skills-grid reveal">
+    <div class="about-label">Stack</div>
+    <div class="skill-cats">
+
+      <div>
+        <h4 class="skill-cat-title">Languages</h4>
+        <ul class="skill-list">
+          <li>Python</li>
+          <li>Java</li>
+          <li>C / C++</li>
+          <li>JavaScript</li>
+          <li>SQL</li>
+          <li>Bash</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="skill-cat-title">Machine Learning</h4>
+        <ul class="skill-list">
+          <li>PyTorch</li>
+          <li>TensorFlow</li>
+          <li>Keras</li>
+          <li>scikit-learn</li>
+          <li>Hugging Face</li>
+          <li>Sentence-BERT</li>
+          <li>CNN / ViT / DeiT</li>
+          <li>Random Forest</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="skill-cat-title">Computer Vision</h4>
+        <ul class="skill-list">
+          <li>OpenCV</li>
+          <li>Image Segmentation</li>
+          <li>Object Detection</li>
+          <li>UAV Imaging</li>
+          <li>Video Analytics</li>
+          <li>NDVI &amp; Spectral</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="skill-cat-title">Data &amp; Retrieval</h4>
+        <ul class="skill-list">
+          <li>FAISS</li>
+          <li>NumPy / Pandas</li>
+          <li>RAG Pipelines</li>
+          <li>Vector Search</li>
+          <li>Streamlit</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="skill-cat-title">Security &amp; Systems</h4>
+        <ul class="skill-list">
+          <li>Network IDS</li>
+          <li>Intrusion Detection</li>
+          <li>Wireshark</li>
+          <li>Linux</li>
+          <li>Git / GitHub</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="skill-cat-title">Methods</h4>
+        <ul class="skill-list">
+          <li>Research Writing</li>
+          <li>IEEE Publication</li>
+          <li>OOSE / UML</li>
+          <li>LaTeX</li>
+          <li>Experimental Design</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-grid">
+    <h2 class="footer-headline">Let's <span class="italic">talk.</span></h2>
+    <div class="footer-contact">
+      <a href="mailto:22z156@psgitech.ac.in">
+        <span>Email</span>
+        <span>22z156@psgitech.ac.in</span>
+      </a>
+      <a href="#" target="_blank" rel="noopener">
+        <span>GitHub</span>
+        <span>github.com/your-handle ↗</span>
+      </a>
+      <a href="#" target="_blank" rel="noopener">
+        <span>LinkedIn</span>
+        <span>linkedin.com/in/your-handle ↗</span>
+      </a>
+      <a href="#" target="_blank" rel="noopener">
+        <span>IEEE Paper</span>
+        <span>iTechSECOM 2025 ↗</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div>© MMXXVI &nbsp;·&nbsp; Surya Sai Ganga Dhaaran Pithani</div>
+    <div>Designed &amp; built by hand</div>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
